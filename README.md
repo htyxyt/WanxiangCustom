@@ -1,6 +1,6 @@
 ##  使用说明：万象输入法个人配置 + 基础版&Pro版共存工具
 
-`Rename_wanxiangpro.bat` 脚本可以将 GitHub 上的 `rime_wanxiang_pro` 方案与 `rime_wanxiang` 基础版一起部署到同一个用户文件夹中，可共存使用。
+`Rename_wanxiangpro.bat` 脚本可以将[`万象拼音pro版`](https://github.com/amzxyz/rime_wanxiang_pro) 方案与[`万象拼音基础版`](https://github.com/amzxyz/rime_wanxiang) 一起部署到同一个用户文件夹中，共存使用。
 
 ---
 
