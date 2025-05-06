@@ -8,7 +8,7 @@ patch:
   #通过下面的设置可以让你自己的文件引入而与仓库custom_phrase.txt不同，以后可以大胆覆盖更新
   custom_phrase/user_dict: custom_ys_phrase    # 改成什么就需要手动创建 xxxxxx.txt 文件在用户目录
     #下面是候选数量
-  menu/page_size: 7
+  menu/page_size: 6
   # 下面调整字体大小
   style/font_point: 14
   #下面用来改变你的windows小狼毫右下角软件图标
