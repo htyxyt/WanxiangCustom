@@ -14,7 +14,7 @@ schema_list:
 
 # 菜单
 menu:
-  page_size: 7  # 候选词个数
+  page_size: 6  # 候选词个数，不要超过6，7890用于声调
   #alternative_select_labels: [ ⒈, ⒉, ⒊, ⒋, ⒌, ⒍, ⒎, ⒏, ⒐, ⒑, ⒒, ⒓, ⒔, ⒕, ⒖, ⒗, ⒘, ⒙, ⒚, ⒛ ]  # 修改候选项标签
   # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
 
@@ -23,8 +23,7 @@ menu:
 switcher:
   caption: 「方案选单」
   hotkeys:
-    - Control+grave
-    # - Alt+grave
+    - Control+grave    #tab上面那个，别怪我没提醒
   save_options:  # 开关记忆（方案中的 switches），从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
     - ascii_punct
     - traditionalization
@@ -62,6 +61,7 @@ ascii_composer:
     Control_R: noop       # commit_code | commit_text | inline_ascii | clear | noop
 
 
+###################################################################################
 # 处理符合特定规则的输入码，如网址、反查
 # 此处配置较为通用的选项，各方案中另增加了和方案功能绑定的 patterns。
 recognizer:
