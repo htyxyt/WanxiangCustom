@@ -65,6 +65,16 @@ for %%f in (wanxiangpro*.yaml) do (
     "}"
 )
 
+echo === 步骤 4.5：修正 wanxiangpro-lts-zh-hans → wanxiang-lts-zh-hans ===
+if exist "wanxiangpro.schema.yaml" (
+  powershell -Command ^
+    "$f='wanxiangpro.schema.yaml';" ^
+    "$c = Get-Content -Raw -Encoding UTF8 $f;" ^
+    "$c = $c -replace 'wanxiangpro-lts-zh-hans', 'wanxiang-lts-zh-hans';" ^
+    "[System.IO.File]::WriteAllText($f, $c, [System.Text.Encoding]::UTF8);" ^
+    "Write-Host ✅ 已修正 wanxiangpro-lts-zh-hans → wanxiang-lts-zh-hans"
+)
+
 echo === 步骤 5：替换 wanxiangpro.dict.yaml 中 cn_dicts → cn_dicts_pro ===
 if exist "wanxiangpro.dict.yaml" (
   powershell -Command ^
