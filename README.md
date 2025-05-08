@@ -41,7 +41,7 @@
 
 将本项目的`default.yaml`复制到 Rime 用户文件夹中，其他`custom`文件可以使用自己的
 
-点击**重新部署**，即可在输入法中看到 `wanxiang` 和 `wanxiangpro` 两个输入方案。
+点击**重新部署**，即可在rime输入法设置中看到 `wanxiang` 和 `wanxiangpro` 两个输入方案。
 
 ---
 
