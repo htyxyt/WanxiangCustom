@@ -29,7 +29,7 @@
 | 步骤 2 | 将 `cn_dicts` 文件夹重命名为 `cn_dicts_pro` |
 | 步骤 3 | 将 `lua/super_comment.lua`和 `super_preedit.lua`分别重命名为 `super_comment_pro.lua`和 `super_preedit_pro.lua` |
 | 步骤 4 | 替换所有 `.yaml` 文件中 `wanxiang` 为 `wanxiangpro` |
-| 步骤 4.5 |修正 `wanxiangpro.schema.yaml` 中的 `wanxiangpro-lts-zh-hans` → `wanxiang-lts-zh-hans` |
+| 步骤 4.5 |修正 `wanxiangpro.schema.yaml` 中的 `wanxiangpro-lts-zh-hans` 回 `wanxiang-lts-zh-hans` |
 | 步骤 5 | 替换 `wanxiangpro.dict.yaml` 中的 `cn_dicts` 为 `cn_dicts_pro` |
 | 步骤 6 | 替换 `wanxiangpro.schema.yaml` 中所有 `super_comment`、`super_preedit` 为带 `_pro` 版本 |
 
@@ -37,11 +37,11 @@
 
 ### 3. 复制到 Rime 用户文件夹
 
-**将所有处理后的文件复制到 Rime 用户文件夹中**
+将所有处理后的文件复制到 Rime 用户文件夹中
 
-**将本项目的`default.yaml`复制到 Rime 用户文件夹中**
+将本项目的`default.yaml`复制到 Rime 用户文件夹中，其他`custom`文件可以使用自己的
 
-点击重新部署，即可在输入法中看到 `wanxiang` 和 `wanxiangpro` 两个输入方案。
+点击**重新部署**，即可在输入法中看到 `wanxiang` 和 `wanxiangpro` 两个输入方案。
 
 ---
 
