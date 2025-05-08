@@ -6,7 +6,7 @@
 
 ### 1. 准备工作
 
-从以下项目地址下载 Pro 版源码，然后解压：
+从以下项目地址下载 Pro 版对应的方案，然后解压：
 
 - GitHub 地址：https://github.com/amzxyz/rime_wanxiang_pro
 
