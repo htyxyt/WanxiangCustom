@@ -39,7 +39,7 @@
 
 将所有处理后的文件复制到 Rime 用户文件夹中
 
-将本项目的`default.yaml`复制到 Rime 用户文件夹中，其他`custom`文件可以使用自己的
+将本项目的`default.yaml`复制到 Rime 用户文件夹中，其他`custom`文件可以使用自己的，但需要注意基础版和pro版的区分
 
 点击**重新部署**，即可在rime输入法设置中看到 `wanxiang` 和 `wanxiangpro` 两个输入方案。
 
