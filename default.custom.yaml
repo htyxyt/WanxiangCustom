@@ -6,7 +6,9 @@ customization:
   rime_version: 1.13.1
 patch:
   schema_list:
-    - {schema: wanxiang}
-    - {schema: wanxiangpro}
+    - schema: wanxiang
+    - schema: wanxiangpro
   switcher:
-    hotkeys: ["Control+Shift+F"]
+    caption: 「方案选单」
+    hotkeys: 
+      - Control+Shift+F
