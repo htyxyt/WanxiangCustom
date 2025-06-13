@@ -32,8 +32,8 @@
 | 步骤 3 | 将 `lua/super_comment.lua`和 `super_preedit.lua`分别重命名为 `super_comment_pro.lua`和 `super_preedit_pro.lua` |
 | 步骤 4 | 替换所有 `.yaml` 文件中 `wanxiang` 为 `wanxiangpro` |
 | 步骤 4.5 |修正 `wanxiangpro.schema.yaml` 中的 `wanxiangpro-lts-zh-hans` 回 `wanxiang-lts-zh-hans`，以共用模型文件 |
-| 步骤 5 | 替换 `wanxiangpro.dict.yaml` 中的 `cn_dicts` 为 `cn_dicts_pro` |
-| 步骤 6 | 替换 `wanxiangpro.schema.yaml` 中所有 `super_comment`、`super_preedit` 为带 `_pro` 版本 |
+| 步骤 5 | 替换 `wanxiangpro.dict.yaml` 中的 `cn_dicts/` 为 `cn_dicts_pro/` |
+| 步骤 6 | 替换 `wanxiangpro.schema.yaml` 中所有 `super_comment`、`super_preedit` 为 `super_comment_pro.lua`、 `super_preedit_pro.lua` |
 
 ---
 
