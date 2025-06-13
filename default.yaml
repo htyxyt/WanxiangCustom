@@ -8,7 +8,7 @@ config_version: '2025-06-01'
 
 # 方案列表
 schema_list:
-  - scheam: wanxiang              # 基础版
+  - schema: wanxiang              # 基础版
   - schema: wanxiangpro          # pro版
 
 
