@@ -1,0 +1,42 @@
+patch:
+  speller/algebra:
+    __patch:
+  #可选双拼输入方案：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼
+      - wanxiang_pro.schema:/自然码
+  #可选辅助码输入方式：直接辅助和间接辅助
+  #直接辅助直接打，nire=你；间接则需要/引导，ni/re=你。在此基础上，直接辅助支持拼音后任意位置输入数字声调，间接辅助需要在/引导前输入数字声调
+      - wanxiang_pro.schema:/间接辅助
+  #可选中英混合词汇方案（与选择的双拼方案一致）：en_dicts/pinyin， en_dicts/zrm， en_dicts/flypy ，en_dicts/mspy， en_dicts/sogou
+  cn_en/user_dict: en_dicts/zrm
+  
+  #引入自定义词库文件，防止更新被仓库custom_phrase.txt覆盖，需要手动创建对应的xxxxxx.txt在用户目录
+  custom_phrase/user_dict: custom_phrase_ys
+  
+  #候选词数量，不要大于6（7890用于输入1234声调，应避免冲突）
+  menu/page_size: 6
+  #调整字体大小
+  style/font_point: 14
+  
+  #改变windows小狼毫右下角软件图标
+  #schema/+:
+  #  icon: "icons/zhong.ico"
+  #  ascii_icon: "icons/ying.ico"
+  
+  #改变tips上屏快捷键，默认是句号（按键速查在default.yaml里）
+  key_binder/tips_key: "period"
+  #自定义造词快捷键，在输入编码后可双击`键进行造词，不会删除编码
+#  key_binder/bindings/+:
+#    - { match: "^.*`$", accept: "`", send_sequence: '{BackSpace}{Home}{`}{`}{End}' }
+  
+  #快符引导键，前者用来引导符号、双击重复上屏符号，后者双击重复上屏汉字
+  recognizer/patterns/quick_symbol:   #取消快符功能"^;.*$"
+
+  #设置开启调频的时候哪些内容不调频
+  translator/disable_user_dict_for_patterns: "^[a-z]{1,6}"
+  
+  #开启以词定字脚本
+  engine/processors/@before 2:
+    lua_processor@*select_character
+  #开启翻译脚本
+#  engine/filters/@before 13:
+#    lua_filter@*cloud_translation
