@@ -1,0 +1,54 @@
+patch:
+  speller/algebra:
+    __patch:
+  #可选双拼输入方案：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼
+      - wanxiang_pro.schema:/自然码
+  #可选辅助码输入方式：直接辅助和间接辅助
+  #直接辅助直接打，nire=你；间接则需要/引导，ni/re=你。在此基础上，直接辅助支持拼音后任意位置输入数字声调，间接辅助需要在/引导前输入数字声调
+      - wanxiang_pro.schema:/间接辅助
+  #可选中英混合词汇方案（与选择的双拼方案一致）：en_dicts/pinyin， en_dicts/zrm， en_dicts/flypy ，en_dicts/mspy， en_dicts/sogou
+  
+  #引入自定义词库文件，防止更新被仓库custom_phrase.txt覆盖，需要手动创建对应的xxxxxx.txt在用户目录
+  custom_phrase/user_dict: custom_phrase_ys
+  #导入名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少
+  #translator/packs/+:
+  #  - userxx
+    
+  #候选词数量，不要大于6（7890用于输入1234声调，应避免冲突）
+  menu/page_size: 6
+  #调整字体大小
+  style/font_point: 14
+  
+  #改变windows小狼毫右下角软件图标
+  #schema/+:
+  #  icon: "icons/zhong.ico"
+  #  ascii_icon: "icons/ying.ico"
+  
+  #改变tips上屏快捷键，默认是句号（按键速查在default.yaml里）
+  key_binder/tips_key: "period"
+  #手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
+  key_binder/sequence: 
+    up: "Control+j"    # 上移
+    down: "Control+k"  # 下移
+    reset: "Control+l" # 重置
+    pin: "Control+p"   # 置顶
+    
+  # 各种开关默认值设置
+#  switches/@0/reset: 0 # 默认中文状态
+#  switches/@2/reset: 0 # 默认半角符号
+#  switches/@3/reset: 0 # 默认不显示表情候选
+#  switches/@5/reset: 0 # 默认不显示拆分
+#  switches/@6/reset: 0 # 默认使用小字集
+#  switches/@7/reset: 1 # 默认开启超级提示
+#  switches/@9/reset: 0 # 默认不显示注释
+#  switches/@10/reset: 0 # 默认简体模式
+  
+  #快符引导键，前者用来引导符号、双击重复上屏符号，后者双击重复上屏汉字
+  recognizer/patterns/quick_symbol:   #取消快符功能"^;.*$"
+
+  #设置开启调频的时候哪些内容不调频
+  translator/disable_user_dict_for_patterns: "^[a-z]{1,6}"
+  
+  #开启以词定字脚本
+  engine/processors/@before 2:
+    lua_processor@*select_character
