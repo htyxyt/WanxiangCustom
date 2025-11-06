@@ -1,54 +1,237 @@
 patch:
   speller/algebra:
     __patch:
-  #可选双拼输入方案：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼
-      - wanxiang_pro.schema:/自然码
-  #可选辅助码输入方式：直接辅助和间接辅助
-  #直接辅助直接打，nire=你；间接则需要/引导，ni/re=你。在此基础上，直接辅助支持拼音后任意位置输入数字声调，间接辅助需要在/引导前输入数字声调
-      - wanxiang_pro.schema:/间接辅助
-  #可选中英混合词汇方案（与选择的双拼方案一致）：en_dicts/pinyin， en_dicts/zrm， en_dicts/flypy ，en_dicts/mspy， en_dicts/sogou
-  
-  #引入自定义词库文件，防止更新被仓库custom_phrase.txt覆盖，需要手动创建对应的xxxxxx.txt在用户目录
-  custom_phrase/user_dict: custom_phrase_ys
-  #导入名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少
+      #- 模糊音                                  # 这里启用后，本文件末尾可配置具体条目
+      - wanxiang_algebra:/pro/自然码             # 可选输入方案名称：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，龙三
+      - wanxiang_algebra:/pro/间接辅助            #辅助码升级为：直接辅助和间接辅助两种类型，都是句中任意，不同点在于直接辅助是nire=你  而间接则需要/引导  ni/re=你 ，在这个基础上直接辅助支持拼音后任意位置数字声调参与，间接辅助声调在/引导前参与
+      #- 自然码提权                               #本文件末尾，有自然码和小鹤的可以用
+##########################以上格式受指令初始化控制，最好保持格式不变，如果发生变更请不要使用指令修改相关数据#####################################
+  #通过下面的设置可以让你自己的文件引入而与仓库custom_phrase.txt不同，防止更新时被仓库文件覆盖
+  custom_phrase/user_dict: custom_phrase_ys    # 这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
   #translator/packs/+:
-  #  - userxx
-    
-  #候选词数量，不要大于6（7890用于输入1234声调，应避免冲突）
+    #- userxx                                  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
+    #下面是候选数量，未来7890分别代表1234声，请候选长度不要大于6避免冲突
   menu/page_size: 6
+  #下面是超级注释相关
+  super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
+    candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
+    corrector_type: "〔comment〕"  # 错音措字，随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
+    chaifen: "〔chaifen〕"         # 拆分显示，随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
+  #下面用于对/rq和N20250101这样的日期候选自定义（顺序、类型、候选个数）由你完全掌控，前面是对于公历后面默认携带农历
+  #Y=年，m=月，d=日，数字前面带0如02月09日；y代表后两位年如15年，nj代表不带0的 如2月9日
+  date_formats:
+    - "Y年m月d日"
+    - "Y-m-d"
+    - "Y/m/d"
+    - "Y.m.d"
+    - "Ymd"
+    - "Y年n月j日"
+    - "y年n月j日"
+    - "n月j日"
+
   #调整字体大小
   style/font_point: 14
-  
-  #改变windows小狼毫右下角软件图标
+  #下面用来改变你的windows小狼毫右下角软件图标
   #schema/+:
   #  icon: "icons/zhong.ico"
   #  ascii_icon: "icons/ying.ico"
-  
-  #改变tips上屏快捷键，默认是句号（按键速查在default.yaml里）
-  key_binder/tips_key: "period"
-  #手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
-  key_binder/sequence: 
+  #下面这个可以改变tips上屏的按键
+  key_binder/tips_key: "period"   #修改时候去default找，默认是句号
+  key_binder/sequence: # Lua 配置：手动排序的快捷键 super_sequence.lua，不要用方向键，各种冲突，一定要避免冲突
     up: "Control+j"    # 上移
     down: "Control+k"  # 下移
     reset: "Control+l" # 重置
     pin: "Control+p"   # 置顶
-    
-  # 各种开关默认值设置
-#  switches/@0/reset: 0 # 默认中文状态
-#  switches/@2/reset: 0 # 默认半角符号
-#  switches/@3/reset: 0 # 默认不显示表情候选
-#  switches/@5/reset: 0 # 默认不显示拆分
-#  switches/@6/reset: 0 # 默认使用小字集
-#  switches/@7/reset: 1 # 默认开启超级提示
-#  switches/@9/reset: 0 # 默认不显示注释
-#  switches/@10/reset: 0 # 默认简体模式
-  
-  #快符引导键，前者用来引导符号、双击重复上屏符号，后者双击重复上屏汉字
-  recognizer/patterns/quick_symbol:   #取消快符功能"^;.*$"
+  # 快符功能：
+  # a\、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
+  # 现在就支持26字母快符，结合成对符号输入，这边的压力小一些
+  quick_symbol_text:
+    trigger: "^([a-z])\\$"
+    symkey:
+      q: "repeat"
+      w: ""
+      e: ""
+      r: ""
+      t: ""
+      y: "杨昊青"
+      u: "受压形变"
+      i: "陈凡"
+      o: ""
+      p: "PINN深度学习"
+      a: ""
+      s: "宋扬"
+      d: ""
+      f: ""
+      g: "高温电容式压力传感器"
+      h: "韩冰"
+      j: ""
+      k: ""
+      l: ""
+      z: ""
+      x: "谢宇皓"
+      c: ""
+      v: "周边固支圆板"
+      b: ""
+      n: "南京理工大学"
+      m: ""
 
-  #设置开启调频的时候哪些内容不调频
-  translator/disable_user_dict_for_patterns: "^[a-z]{1,6}"
-  
-  #开启以词定字脚本
-  engine/processors/@before 2:
-    lua_processor@*select_character
+  #通过在有候选的情况下，通过末尾检测到形如\a来触发为第一候选进行成对符号包裹例如nihao\c 候选[你好]
+  #trigger只能设置为单符号，因为按下一次锁定第一候选，按下映射开始包裹符号pro用户不能设置为/
+  #两个字符可以不用|默认前后分割，需要明确区分前后的使用|分割，可以有一侧为空，不可以使用多个||
+  paired_symbols:
+    #sort_window: 10
+    trigger: "KP_0"  #(注意反斜杠这是转义写法\\使用时\单反斜杠即可)
+    mirror: true   #包裹后完全替换第一候选true,原候选后移到第二false
+    symkey:
+      # ===== 基本括号与引号 =====
+      a: "[]"        # 方括号
+      b: "【】"       # 黑方头括号
+      c: "❲❳"        # 双大括号 / 装饰括号
+      d: "〔〕"       # 方头括号
+      e: "⟮⟯"        # 小圆括号 / 装饰括号
+      f: "⟦⟧"        # 双方括号 / 数学集群括号
+      g: "「」"       # 直角引号
+      # h: 预留用于 Markdown 一级标题
+      i: "『』"       # 双直角引号
+      j: "<>"        # 尖括号
+      k: "《》"       # 书名号（双）
+      l: "〈〉"       # 书名号（单）
+      m: "‹›"        # 法文单书名号
+      n: "«»"        # 法文双书名号
+      o: "⦅⦆"         # 白圆括号
+      p: "⦇⦈"        # 白方括号
+      q: "()"        # 圆括号
+      r: "|儿"        #儿化候选
+      s: "［］"       # 全角方括号
+      t: "⟨⟩"        # 数学角括号
+      u: "〈〉"       # 数学尖括号
+      v: "〖〗"       # 装饰花括号
+      w: "（）"       # 全角圆括号
+      x: "｛｝"       # 全角花括号
+      y: "⟪⟫"        # 双角括号
+      z: "{}"        # 花括号
+
+      # ===== 扩展括号族 / 引号 =====
+      dy: "''"        # 英文单引号
+      sy: "\"\""      # 英文双引号
+      zs: "“”"        # 中文弯双引号
+      zd: "‘’"        # 中文弯单引号
+      fy: "``"        # 反引号
+
+      # ===== 双字母括号族 =====
+      aa: "〚〛"      # 双中括号
+      bb: "〘〙"      # 双中括号（小）
+      cc: "〚〛"      # 双中括号（重复，可用于 Lua 匹配）
+      dd: "❨❩"      # 小圆括号装饰
+      ee: "❪❫"      # 小圆括号装饰
+      ff: "❬❭"      # 小尖括号装饰
+      gg: "⦉⦊"      # 双弯方括号
+      ii: "⦍⦎"      # 双弯方括号
+      jj: "⦏⦐"      # 双弯方括号
+      kk: "⦑⦒"      # 双弯方括号
+      ll: "❮❯"      # 小尖括号装饰
+      mm: "⌈⌉"      # 上取整 / 数学符号
+      nn: "⌊⌋"      # 下取整 / 数学符号
+      oo: "⦗⦘"      # 双方括号装饰（补齐）
+      pp: "⦙⦚"      # 双方括号装饰（补齐）
+      qq: "⟬⟭"      # 小双角括号
+      rr: "❴❵"      # 花括号装饰
+      ss: "⌜⌝"      # 数学上角符号
+      tt: "⌞⌟"      # 数学下角符号
+      uu: "⸢⸣"      # 装饰方括号
+      vv: "⸤⸥"      # 装饰方括号
+      ww: "﹁﹂"      # 中文书名号 / 注释引号
+      xx: "﹃﹄"      # 中文书名号 / 注释引号
+      yy: "⌠⌡"      # 数学 / 程序符号
+      zz: "⟅⟆"      # 数学 / 装饰括号
+
+      # ===== Markdown / 标记 =====
+      md: "**|**"       # Markdown 粗体
+      jc: "**|**"       # 加粗
+      it: "__|__"       # 斜体
+      st: "~~|~~"       # 删除线
+      eq: "==|=="       # 高亮
+      ln: "`|`"         # 行内代码
+      cb: "```|```"     # 代码块
+      qt: "> |"         # 引用
+      ul: "- |"         # 无序列表项
+      ol: "1. |"        # 有序列表项
+      lk: "[|](url)"    # 链接
+      im: "![|](img)"   # 图片
+      h: "# |"          # 一级标题
+      hh: "## |"        # 二级标题
+      hhh: "### |"      # 三级标题
+      hhhh: "#### |"    # 四级标题
+      sp: "\\|"         # 反斜杠转义
+      br: "|  "         # 换行
+      cm: "<!--|-->"    # 注释
+
+      # ===== 运算与标记符 =====
+      pl: "++"
+      mi: "--"
+      sl: "//"
+      bs: "\\\\"
+      at: "@@"
+      dl: "$$"
+      pc: "%%"
+      an: "&&"
+      cr: "^^"
+      cl: "::"
+      sc: ";;"
+      ex: "!!"
+      qu: "??"
+      sb: "sb"
+
+  # 取消注释以开启自动无词频造词
+  add_user_dict/enable_auto_phrase: true
+
+#下面的数据有需要的可以patch引用
+#特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对小鹤双拼有效，其他双拼方案需作对应修改）
+小鹤双拼提权:
+  __append:
+    - derive/^(.*?)(\d?);(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
+#特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对自然码有效，其他双拼方案需作对应修改）
+自然码提权:
+  __append:
+    - derive/^(.*?)(\d?);(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+模糊音: 
+  __append:
+    # n - l
+    - derive/^l/n
+    - derive/^n/l
+    # r - y     开头
+    - derive/^y/r
+    - derive/^r/y
+    # h - f     开头
+    - derive/^h/f
+    - derive/^f/h
+    # r - l     开头
+    - derive/^r/l
+    - derive/^l/r
+    # k - g     开头
+    - derive/^k/g
+    - derive/^g/k
+    # an - ang
+    - derive/([ui]?)([āáǎàa])ng(.*)$/$1$2n$3
+    - derive/([ui]?)([āáǎàa])n(.*)$/$1$2ng$3
+    # en - eng
+    - derive/([ēéěèe])ng(.*)$/$1n$2
+    - derive/([ēéěèe])n(.*)$/$1ng$2
+    # in - ing
+    - derive/([īíǐìi])ng(.*)$/$1n$2
+    - derive/([īíǐìi])n(.*)$/$1ng$2
+    # c - ch
+    - derive/^c([^h]*)/ch$1
+    - derive/^ch/c
+    # z - zh
+    - derive/^z([^h]*)/zh$1
+    - derive/^zh/z
+    # s - sh
+    - derive/^s([^h]*)/sh$1
+    - derive/^sh/s
