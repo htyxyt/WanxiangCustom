@@ -57,12 +57,12 @@ jupyter lab	jup	6
 式	u	3
 使	u	2
 事	u	1
-成	i	6
-常	i	5
-超	i	4
-朝	i	3
-称	i	2
-趁	i	1
+穿	i	6
+超	i	5
+朝	i	4
+称	i	3
+乘	i	2
+除	i	1
 哦	o	6
 噢	o	5
 欧	o	4
@@ -109,15 +109,15 @@ jupyter lab	jup	6
 和	h	6
 还	h	5
 会	h	4
-很	h	3
-好	h	2
+或	h	3
+很	h	2
 后	h	1
 就	j	6
 将	j	5
 较	j	4
 皆	j	3
-均	j	2
-既	j	1
+加	j	2
+减	j	1
 看	k	6
 开	k	5
 肯	k	4
@@ -154,7 +154,7 @@ jupyter lab	jup	6
 之	v	4
 找	v	3
 正	v	2
-真	v	1
+整	v	1
 吧	b	6
 被	b	5
 别	b	4
@@ -178,15 +178,15 @@ jupyter lab	jup	6
 缺	qt	4
 # 握	wo	6
 # 儿	er	6
-任	rf	6
+# 任	rf	6
 她	ta	6
 由	yb	6
 时	ui	6
 使	ui	5
 事	ui	4
-乘	ig	6
-称	ig	5
-呈	ig	4
+传	ir	6
+# 称	ig	5
+# 呈	ig	4
 噢	oo	6
 # 胖	ph	6
 阿	aa	6
@@ -195,10 +195,10 @@ jupyter lab	jup	6
 # 法	fa	6
 各	ge	6
 # 喝	he	6
-久	jq	6
+旧	jq	6
 # 砍	kj	6
 # 乐	le	6
-拉	la	6
+# 拉	la	6
 再	zl	6
 限	xm	6
 猜	cl	6
@@ -230,7 +230,8 @@ jupyter lab	jup	6
 今天	jt	6
 前天	qt	6
 其他	qt	5
-后天	ht	6
+回头	ht	6
+后天	ht	5
 明天	mt	6
 每天	mt	5
 每日	mr	6
@@ -245,16 +246,20 @@ jupyter lab	jup	6
 你们	nm	5
 他们	tm	6
 人们	rm	6
-他人	tr	6
-突然	tr	5
+突然	tr	6
+他人	tr	5
 自己	zj	6
+最近	zj	5
 作为	zw	6
 自我	zw	5
 某些	mx	6
 某种	mv	6
-的确	dq	6
+当前	dq	6
+的确	dq	5
 应该	yg	6
-有关	yg	5
+有关	yg	5	
+一共	yg	4
+一个	yg	3
 似乎	sh	6
 任意	ry	6
 对方	df	6
@@ -282,22 +287,25 @@ jupyter lab	jup	6
 自从	zc	6
 再次	zc	5
 接着	jv	6
-如何	rh	6
-然后	rh	5
+然后	rh	6
+如何	rh	5
 任何	rh	4
 然而	re	6
 从而	ce	6
 进而	je	6
 反而	fe	6
 仍然	rr	6
-既然	jr	6
-竟然	jr	5
+依然	yr	6
+竟然	jr	6
+既然	jr	5
 向来	xl	6
 原来	yl	6
-比如	br	6
-不然	br	5
+不然	br	6
+不如	br	5
+比如	br	4
 当然	dr	6
 根据	gj	6
+觉得	jd	6
 尽管	jg	6
 经过	jg	5
 尽量	jl	6
@@ -329,8 +337,8 @@ jupyter lab	jup	6
 其间	qj	5
 前后	qh	6
 之间	vj	6
-之外	vw	6
-周围	vw 	5
+中间	vj	5
+之外	vw 	6
 关于	gy	6
 对应	dy	6
 对于	dy	5
@@ -351,6 +359,7 @@ jupyter lab	jup	6
 一会儿	yhe	6
 现在	xz	6
 后来	hl	6
+最后	zh	6
 正在	vz	6
 目前	mq	6
 刚才	gc	6
@@ -363,7 +372,7 @@ jupyter lab	jup	6
 可行	kx	6
 即可	jk	6
 既可	jk	5
-稍微	uw	6
+稍微	uw	5
 仅仅	jj	6
 渐渐	jj	5
 即将	jj	4
@@ -380,21 +389,29 @@ jupyter lab	jup	6
 以前	yq	4
 才能	cn	6
 可能	kn	6
+有可能	ykn	6
+不可能	bkn	6
 只能	vn	6
 之内	vn	5
 没有	my	6
+还有	hy	6
 有点	yd	6
 一旦	yd	5
-运动	yd	4
+一定	yd	4
+肯定	kd	6
 这个	vg	6
 那个	ng	6
 能够	ng	5
 那是	nu	6
 这是	vu	6
-正是	vu	5
+只是	vu	5
+正是	vu	4
+还是	hu	6
+就是	ju	6
 这么	vm	6
 那么	nm	6
 这些	vx	6
+中心	vx	5
 那些	nx	6
 这种	vv	6
 之中	vv	5
@@ -414,7 +431,9 @@ jupyter lab	jup	6
 怎么啦	zml	6
 怎么样	zmy	6
 什么	um	6
+是什么	uum	6
 为什么	wum	6
+没什么	mum	6
 什么样	umy	6
 不知道	bvd	6
 对不起	dbq	6
@@ -431,6 +450,7 @@ jupyter lab	jup	6
 算不算	sbs	6
 有没有	ymy	6
 还没有	hmy	6
+并没有	bmy	6
 有时候	yuh	6
 什么时候	umuh	6
 所谓	sw	6
@@ -471,11 +491,10 @@ jupyter lab	jup	6
 电导率	ddl	6
 氧化铝	yhl	6
 氮化硅	dhg	6
+热应力	ryl	6
+形变	xb	6
+归一化	gyh	6
 
-#缺词添加
-固支	guvi	6
-简支	jmvi	6
-封接	fgjx	6
 
 #半角符号
 ()	op	6
