@@ -43,7 +43,7 @@ jupyter lab	jup	6
 她	t	5
 它	t	4
 太	t	3
-同	t	2
+挺	t	2
 天	t	1
 有	y	6
 又	y	5
@@ -217,14 +217,13 @@ jupyter lab	jup	6
 得以	dey	6
 每天	mzt	6
 每当	mzd	6
-夹具	jwj	6
 嗯呢	enn	6
 
-#五码调序
-差不多	iabud	6
-事实上	uiuiu	6
-
 #日常简码
+哈哈哈哈	hhhh	6
+哈哈哈哈哈	hhhhh	6
+哈哈哈哈哈哈	hhhhhh	6
+哈哈哈哈哈哈哈	hhhhhhh	6
 哈哈哈哈哈哈哈哈	hhhhhhhh	6
 昨天	zt	6
 今天	jt	6
@@ -241,6 +240,7 @@ jupyter lab	jup	6
 每一个	myg	6
 全部	qb	6
 完全	wq	6
+我的	wd	6
 我们	wm	6
 未免	wm	5
 你们	nm	5
@@ -260,12 +260,17 @@ jupyter lab	jup	6
 有关	yg	5	
 一共	yg	4
 一个	yg	3
+一种	yv	6
+一直	yv	5
+一致	yv	4
 似乎	sh	6
 任意	ry	6
-对方	df	6
 宝贝	bb	6
+女朋友	npy	6
+男朋友	npy	5
 我爱你	wan	6
 恰饭	qf	6
+微信	wx	6
 谢谢	xx	6
 好的	hd	6
 好滴呀	hdy	6
@@ -303,9 +308,13 @@ jupyter lab	jup	6
 不然	br	6
 不如	br	5
 比如	br	4
+如下	rx	6
+如图	rt	6
 当然	dr	6
 根据	gj	6
+感觉	gj	6
 觉得	jd	6
+认为	rw	6
 尽管	jg	6
 经过	jg	5
 尽量	jl	6
@@ -326,11 +335,11 @@ jupyter lab	jup	6
 另外	lw	6
 如果	rg	6
 是否	uf	6
-或许	hx	6
-好像	hx	5
+好像	hx	6
+或许	hx	5
 或者	hv	6
-也许	yx	6
-有些	yx	5
+有些	yx	6
+也许	yx	5
 原先	yx	4
 其中	qv	6
 期间	qj	6
@@ -342,9 +351,11 @@ jupyter lab	jup	6
 关于	gy	6
 对应	dy	6
 对于	dy	5
-无不	wb	6
+无比	wb	6
+无不	wb	5
 无论	wl	6
 为了	wl	5
+反正	fv	6
 甚至	uv	6
 在于	zy	6
 再也	zy	5
@@ -363,6 +374,10 @@ jupyter lab	jup	6
 正在	vz	6
 目前	mq	6
 刚才	gc	6
+以前	yq	6
+尤其	yq	5
+与其	yq	4
+过去	gq	6
 偶尔	oe	6
 偶然	or	6
 几乎	jh	6
@@ -383,10 +398,8 @@ jupyter lab	jup	6
 往往	ww	6
 通过	tg	6
 成为	iw	6
+成为了	iwl	6
 非常	fi	6
-尤其	yq	6
-与其	yq	5
-以前	yq	4
 才能	cn	6
 可能	kn	6
 有可能	ykn	6
@@ -395,9 +408,10 @@ jupyter lab	jup	6
 之内	vn	5
 没有	my	6
 还有	hy	6
-有点	yd	6
-一旦	yd	5
+运动	yd	6
+有点	yd	5
 一定	yd	4
+一旦	yd	3
 肯定	kd	6
 这个	vg	6
 那个	ng	6
@@ -420,6 +434,7 @@ jupyter lab	jup	6
 只有	vy	5
 只要	vy	4
 至于	vy	3
+要么	ym	6
 那样	ny	6
 那里	nl	6
 哪里	nl	5
@@ -442,16 +457,18 @@ jupyter lab	jup	6
 不得不	bdb	6
 越来越	yly	6
 是不是	ubu	6
+并不是	bbu	6
 能不能	nbn	6
 行不行	xbx	6
 要不要	yby	6
-好不好	hbh	6
-会不会	hbh	5
+会不会	hbh	6
+好不好	hbh	5
 算不算	sbs	6
 有没有	ymy	6
 还没有	hmy	6
 并没有	bmy	6
 有时候	yuh	6
+到时候	duh	6
 什么时候	umuh	6
 所谓	sw	6
 所谓的	swd	6
@@ -461,6 +478,8 @@ jupyter lab	jup	6
 基本上	jbu	6
 看起来	kql	6
 好家伙	hjh	6
+差不多	ibd	6
+大多数	ddu	6
 
 #工作简码
 高温	gw	6
@@ -470,7 +489,7 @@ jupyter lab	jup	6
 传感器	igq	6
 高温压力传感器	gwyl	6
 结构	jg	4
-仿真	fv	6
+仿真	fv	5
 南京	nj	6
 理工	lg	6
 大学	dx	6
@@ -494,7 +513,7 @@ jupyter lab	jup	6
 热应力	ryl	6
 形变	xb	6
 归一化	gyh	6
-
+论文	lw	5
 
 #半角符号
 ()	op	6
