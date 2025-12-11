@@ -1,7 +1,7 @@
 patch:
   speller/algebra:
     __patch:
-      #- 模糊音                                  # 这里启用后，本文件末尾可配置具体条目
+      - 模糊音                                  # 这里启用后，本文件末尾可配置具体条目
       - wanxiang_algebra:/pro/自然码             # 可选输入方案名称：自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼, 智能ABC, 紫光双拼, 国标双拼，龙三
       - wanxiang_algebra:/pro/间接辅助            #辅助码升级为：直接辅助和间接辅助两种类型，都是句中任意，不同点在于直接辅助是nire=你  而间接则需要/引导  ni/re=你 ，在这个基础上直接辅助支持拼音后任意位置数字声调参与，间接辅助声调在/引导前参与
       #- 自然码提权                               #本文件末尾，有自然码和小鹤的可以用
@@ -10,15 +10,53 @@ patch:
   custom_phrase/user_dict: custom_phrase_ys    # 这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
   #translator/packs/+:
     #- userxx                                  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
-    #下面是候选数量，未来7890分别代表1234声，请候选长度不要大于6避免冲突
+  
+  #下面是候选数量，7890分别代表1234声，请候选长度不要大于6避免冲突
   menu/page_size: 6
+  # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射  
+#  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`;/\
+  
+  #调整字体大小
+  style/font_point: 14
+  
   #下面是超级注释相关
   super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
     candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
     corrector_type: "〔comment〕"  # 错音措字，随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
     chaifen: "〔chaifen〕"         # 拆分显示，随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
+
+  #在8105基础上你可以通过黑白名单微调你自己的字符集过滤清单，主数据库位于lua/charset.bin不可编辑
+  charsetlist: [你]
+  charsetblacklist: [鹵, 彔]
+
+
   #下面用于对/rq和N20250101这样的日期候选自定义（顺序、类型、候选个数）由你完全掌控，前面是对于公历后面默认携带农历
-  #Y=年，m=月，d=日，数字前面带0如02月09日；y代表后两位年如15年，nj代表不带0的 如2月9日
+  # 通用日期时间格式化函数（供 /rq、/sj、/dt、N0101、N20150101 场景复用）
+  # 支持转义：
+  #   \X       —— 转义单个字符 X，按字面量输出（如 \Y \m \H 等）
+  #   [[...]]  —— 区块整体按字面量输出
+  #
+  # 约定占位符：
+  # 【日期】
+  #   Y  四位年份           0000-9999  例：2025
+  #   y  两位年份           00-99      例：25
+  #   m  月（前导零）        01-12      例：02
+  #   n  月（不带前导零）     1-12       例：2
+  #   d  日（前导零）        01-31      例：09
+  #   j  日（不带前导零）     1-31       例：9
+  #
+  # 【时间】
+  #   H  24小时（前导零）   00-23      例：08
+  #   G  24小时（不带零）   0-23       例：8
+  #   I  12小时（前导零）   01-12      例：08
+  #   l  12小时（不带零）   1-12       例：8   （注意是小写 L）
+  #   M  分钟（前导零）     00-59      例：05
+  #   S  秒（前导零）       00-59      例：09
+  #   p  am/pm（小写）     am / pm
+  #   P  AM/PM（大写）     AM / PM
+  # 【时区】
+  #   O  带冒号格式        +08:00、-04:30、+05:45
+  #   o  不带冒号格式      +0800、-0430、+0545
   date_formats:
     - "Y年m月d日"
     - "Y-m-d"
@@ -28,9 +66,19 @@ patch:
     - "Y年n月j日"
     - "y年n月j日"
     - "n月j日"
-
-  #调整字体大小
-  style/font_point: 14
+  time_formats:
+    - "H:M"
+    - "H点M分"
+    - "H:M:S"
+    - "H时M分S秒"
+    - "下午I:M"
+    - "I:M P"
+  datetime_formats:
+    - "Y-m-d H:M:S"
+    - "Y-m-dTH:M:S O"
+    - "YmdHMS"
+    - "Y年m月d日 H点M分"
+    - "y/m/d I:M p"
   #下面用来改变你的windows小狼毫右下角软件图标
   #schema/+:
   #  icon: "icons/zhong.ico"
@@ -53,25 +101,25 @@ patch:
       e: ""
       r: ""
       t: ""
-      y: ""
+      y: "杨昊青"
       u: "受压形变"
-      i: ""
+      i: "陈凡"
       o: ""
       p: "PINN深度学习"
       a: ""
-      s: ""
+      s: "宋扬"
       d: ""
       f: ""
       g: "高温电容式压力传感器"
-      h: ""
+      h: "韩冰"
       j: ""
       k: ""
       l: ""
       z: ""
-      x: ""
+      x: "谢宇皓"
       c: ""
       v: "周边固支圆板"
-      b: ""
+      b: "卜雄洙"
       n: "南京理工大学"
       m: ""
 
@@ -80,7 +128,7 @@ patch:
   #两个字符可以不用|默认前后分割，需要明确区分前后的使用|分割，可以有一侧为空，不可以使用多个||
   paired_symbols:
     #sort_window: 10
-    trigger: "KP_0"  #(注意反斜杠这是转义写法\\使用时\单反斜杠即可)
+    trigger: "KP_0"  #选择小键盘上的键，取消成对符号功能
     mirror: true   #包裹后完全替换第一候选true,原候选后移到第二false
     symkey:
       # ===== 基本括号与引号 =====
@@ -182,8 +230,8 @@ patch:
       qu: "??"
       sb: "sb"
 
-  # 取消注释以开启自动无词频造词
-  add_user_dict/enable_auto_phrase: true
+  #开启自动无词频造词（默认已经开了）
+  #add_user_dict/enable_auto_phrase: true
 
 #下面的数据有需要的可以patch引用
 #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对小鹤双拼有效，其他双拼方案需作对应修改）
@@ -191,48 +239,45 @@ patch:
   __append:
     - derive/^(.*?)(\d?);(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
     - derive/^(.*?)(\d?);.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bl|dx|df|eg|fn|kw|ny|tw|vw|yd|rx|fs|ix)$/$1$3/
+
 #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对自然码有效，其他双拼方案需作对应修改）
 自然码提权:
   __append:
-    - derive/^(.*?)(\d?);(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+    - derive/^(.*?)(\d?);(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|dz|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,(jb|wq|aq|av|dn|xh|bv|jz|hm|sn|cd|iw|xl|ak|zy|fy|uz|yx|wb|wr|yw|dz|qz|ms|at|xf|gi|gn|or|ux|ww|nw|fs|qk|rl|cq|sw|jv|cy|sq|dd|fp|ae|ix|td|ep|ar|wm|pd|et|yz|eh|ct|os|hx|zq|ew|fm|ab|kc|tf|fx|we|sz|wx|bq|ic|ez|bs|ej|oh|ps|pw|fr|pq|au|wc|wp|dt|qf|zc|vx|im|br|mw|un|qb|fi|zm|vn|oz|kt|rq|ay|fn|yc|um|eq|eu|cz|yq|tq|oi|ek|az|fv|zx|ut|vz|ry|ac|ws|af|qv|ea|qj|al|ol|on|sx|ap|df|eg|rz|ey|em|ag|hi|iz|ki|xz|xj|ad|ft|pt|op|vt|oj|kn|pr|hq|eb|ev|cx|zd|am|ov|oq|ym|ef|ot|mr|rd|sy|oc|rc|oe|fq|cn|ok|rn|bp|yv|uc|wk|oy|bt|je|ow|xg|jj|rw|pp|ja|wt|lf|xe|wy|kx|sm|qe|fw|gc|xa|cw|zn|tn|cc|jo|md|sd|ql|kq|it|bd|sc|wv|fc|dw|ob|vm|ed|jl|xo|fl|gq|gt|of|pv|wd|qa|xk|yd|fe|og|iq|oa|uq|om|xv|mv|as|ox|km|zt|od|ht|el|hn|st|wn|mt|wi|tz|aj|yg|bw|jf|jg|kz|es|xb|ax|rt|gx|bb|qo|yf|ex|rx|tt|us|qg|pe|zw|mp|qh|rm|hc|np|jh|cm|yl|eo|ra|vc|aw|tw|fk|gm|ec|be|vq|fd|jk|in)$/$1$3/
+
 模糊音: 
   __append:
     # n - l
-    - derive/^l/n
-    - derive/^n/l
+#    - derive/^l/n
+#    - derive/^n/l
     # r - y     开头
-    - derive/^y/r
-    - derive/^r/y
+#    - derive/^y/r
+#    - derive/^r/y
     # h - f     开头
-    - derive/^h/f
-    - derive/^f/h
+#    - derive/^h/f
+#    - derive/^f/h
     # r - l     开头
-    - derive/^r/l
-    - derive/^l/r
+#    - derive/^r/l
+#    - derive/^l/r
     # k - g     开头
-    - derive/^k/g
-    - derive/^g/k
+#    - derive/^k/g
+#    - derive/^g/k
     # an - ang
-    - derive/([ui]?)([āáǎàa])ng(.*)$/$1$2n$3
-    - derive/([ui]?)([āáǎàa])n(.*)$/$1$2ng$3
+#    - derive/([ui]?)([āáǎàa])ng(.*)$/$1$2n$3
+#    - derive/([ui]?)([āáǎàa])n(.*)$/$1$2ng$3
     # en - eng
     - derive/([ēéěèe])ng(.*)$/$1n$2
     - derive/([ēéěèe])n(.*)$/$1ng$2
     # in - ing
-    - derive/([īíǐìi])ng(.*)$/$1n$2
-    - derive/([īíǐìi])n(.*)$/$1ng$2
+#    - derive/([īíǐìi])ng(.*)$/$1n$2
+#    - derive/([īíǐìi])n(.*)$/$1ng$2
     # c - ch
-    - derive/^c([^h]*)/ch$1
-    - derive/^ch/c
+#    - derive/^c([^h]*)/ch$1
+#    - derive/^ch/c
     # z - zh
-    - derive/^z([^h]*)/zh$1
-    - derive/^zh/z
+#    - derive/^z([^h]*)/zh$1
+#    - derive/^zh/z
     # s - sh
-    - derive/^s([^h]*)/sh$1
-    - derive/^sh/s
-
+#    - derive/^s([^h]*)/sh$1
+#    - derive/^sh/s
